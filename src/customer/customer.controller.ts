@@ -20,7 +20,7 @@ export class CustomerController {
   }
 
   @Post()
-  create(@Body() dto: CreateCustomerDto) {
+  create(@Body() dto: CreateCustomerDto): Promise<Customer> {
     return this.customerService.create(dto);
   }
 
