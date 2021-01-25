@@ -4,6 +4,7 @@ import { FindConditions, Not } from 'typeorm';
 import { Customer } from './customer.entity';
 import { CustomerRepository } from './customer.repository';
 import { CreateCustomerDto } from './dto/create-customer.dto';
+import { CustomerFilterDto } from './dto/customer-filter.dto';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
 
 @Injectable()
@@ -13,12 +14,12 @@ export class CustomerService {
     private customerRespository: CustomerRepository,
   ) {}
 
-  getAll(): Promise<Customer[]> {
-    return this.customerRespository.find();
+  getAll(filterDto: CustomerFilterDto): Promise<Customer[]> {
+    return this.customerRespository.getCustomers(filterDto);
   }
 
   async getById(id: string, relations = ['notes'], throwException = true): Promise<Customer> {
-    const customer = await this.customerRespository.findOne({ where: { id }, relations });
+    const customer = await this.customerRespository.getByIdWithNotes(id, relations);
 
     if (!customer && throwException) {
       throw new NotFoundException(`customer with id '${id}' not found.`);
