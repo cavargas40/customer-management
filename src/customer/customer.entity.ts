@@ -1,6 +1,17 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
+/* istanbul ignore file */
+import {
+  BaseEntity,
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 import { CustomerStatus } from './customer.constants';
+import { Note } from '../note/note.entity';
 import { tewtzColumn } from '../database/helpers/column.type';
 
 @Entity()
@@ -11,10 +22,10 @@ export class Customer extends BaseEntity {
   @CreateDateColumn(tewtzColumn)
   createdAt: Date;
 
-  @CreateDateColumn(tewtzColumn)
+  @UpdateDateColumn(tewtzColumn)
   updatedAt: Date;
 
-  @CreateDateColumn({ ...tewtzColumn, select: false })
+  @DeleteDateColumn({ ...tewtzColumn, select: false })
   deletedAt: Date;
 
   @Column({ type: 'varchar' })
@@ -35,4 +46,7 @@ export class Customer extends BaseEntity {
   getFullName() {
     return `${this.firstName} ${this.lastName}`;
   }
+
+  @OneToMany(() => Note, (note) => note.customer, { eager: false })
+  notes: Note[];
 }

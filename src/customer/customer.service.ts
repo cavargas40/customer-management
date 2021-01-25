@@ -17,7 +17,7 @@ export class CustomerService {
     return this.customerRespository.find();
   }
 
-  async getById(id: string, relations = [], throwException = true): Promise<Customer> {
+  async getById(id: string, relations = ['notes'], throwException = true): Promise<Customer> {
     const customer = await this.customerRespository.findOne({ where: { id }, relations });
 
     if (!customer && throwException) {
@@ -51,7 +51,7 @@ export class CustomerService {
 
   async update(id: string, dto: UpdateCustomerDto): Promise<Customer> {
     const { email } = dto || {};
-    const customer = await this.getById(id);
+    const customer = await this.getById(id, []);
 
     if (email) {
       const customerByEmail = await this.getByEmail(email, id);
