@@ -1,3 +1,1 @@
-export class CustomerFilterDto {
-    
-}
+export class CustomerFilterDto {}

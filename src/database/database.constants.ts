@@ -1,3 +1,3 @@
 export enum DatabaseType {
-    PG = 'postgres'
+  PG = 'postgres',
 }

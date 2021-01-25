@@ -1,6 +1,6 @@
 import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-import { CustomerStatus } from './customer.enum';
+import { CustomerStatus } from './customer.constants';
 import { tewtzColumn } from '../database/helpers/column.type';
 
 @Entity()
