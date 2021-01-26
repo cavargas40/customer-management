@@ -2,6 +2,7 @@ import { CreateCustomerDto } from './dto/create-customer.dto';
 import { Customer } from './customer.entity';
 import { CustomerStatus } from './customer.constants';
 import { UpdateCustomerDto } from './dto/update-customer.dto';
+import { mockNote } from '../note/note.mock';
 
 export const mockCustomer: Customer = {
   id: '89e10d62-a544-449b-b2a2-22ffb08536b0',
@@ -37,4 +38,5 @@ export const mockCustomerRepository = () => ({
   createCustomer: jest.fn().mockResolvedValue(mockCustomer),
   updateCustomer: jest.fn().mockResolvedValue(mockCustomer),
   findOne: jest.fn().mockResolvedValue(mockCustomer),
+  getByIdWithNotes: jest.fn().mockResolvedValue(mockCustomer),
 });
