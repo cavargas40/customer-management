@@ -8,6 +8,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  VersionColumn,
 } from 'typeorm';
 
 import { CustomerStatus } from './customer.constants';
@@ -42,6 +43,9 @@ export class Customer extends BaseEntity {
 
   @Column({ nullable: true })
   phoneNumber: string;
+
+  @VersionColumn()
+  version: number;
 
   getFullName() {
     return `${this.firstName} ${this.lastName}`;

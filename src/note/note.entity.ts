@@ -8,6 +8,7 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  VersionColumn,
 } from 'typeorm';
 
 import { Customer } from '../customer/customer.entity';
@@ -29,6 +30,9 @@ export class Note extends BaseEntity {
 
   @Column()
   description: string;
+
+  @VersionColumn()
+  version: number;
 
   @ManyToOne(() => Customer, (customer) => customer.notes, { eager: false })
   customer: Customer;

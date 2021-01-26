@@ -76,3 +76,4 @@ Nest is [MIT licensed](LICENSE).
 // create e2e tests
 // create a proper CI/CD process
 // update swagger documentation with details
+// add a transaction in the optimistic locking
