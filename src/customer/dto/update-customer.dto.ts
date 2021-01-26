@@ -1,10 +1,10 @@
 import { IsEmail, IsIn, IsNotEmpty, IsOptional, IsString, MaxLength, MinLength } from 'class-validator';
 
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiPropertyOptional } from '@nestjs/swagger';
 import { CustomerStatus } from '../customer.constants';
 
 export class UpdateCustomerDto {
-  @ApiProperty()
+  @ApiPropertyOptional()
   @IsOptional()
   @IsString()
   @MinLength(3, {
@@ -15,7 +15,7 @@ export class UpdateCustomerDto {
   })
   firstName: string;
 
-  @ApiProperty()
+  @ApiPropertyOptional()
   @IsOptional()
   @IsString()
   @MinLength(3, {
@@ -26,18 +26,18 @@ export class UpdateCustomerDto {
   })
   lastName: string;
 
-  @ApiProperty({ name: 'status', enum: CustomerStatus })
+  @ApiPropertyOptional({ name: 'status', enum: CustomerStatus })
   @IsOptional()
   @IsNotEmpty()
   @IsIn([CustomerStatus.CURRENT, CustomerStatus.NON_ACTIVE, CustomerStatus.PROSPECTIVE])
   status: CustomerStatus;
 
-  @ApiProperty()
+  @ApiPropertyOptional()
   @IsOptional()
   @IsEmail()
   email: string;
 
-  @ApiProperty()
+  @ApiPropertyOptional()
   @IsOptional()
   @IsString()
   phoneNumber: string;

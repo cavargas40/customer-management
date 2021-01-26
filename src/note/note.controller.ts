@@ -10,9 +10,9 @@ import { NoteService } from './note.service';
 export class NoteController {
   constructor(private noteService: NoteService) {}
 
-  @Get(':id/customer')
-  getByCustomerId(@Param('id', ParseUUIDPipe) id: string): Promise<Note[]> {
-    return this.noteService.getByCustomerId(id);
+  @Get(':customerId/customer')
+  getByCustomerId(@Param('customerId', ParseUUIDPipe) customerId: string): Promise<Note[]> {
+    return this.noteService.getByCustomerId(customerId);
   }
 
   @Post()

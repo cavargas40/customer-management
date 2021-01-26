@@ -1,11 +1,11 @@
 import { IsIn, IsNotEmpty, IsOptional, IsString, MaxLength, MinLength } from 'class-validator';
 
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiPropertyOptional } from '@nestjs/swagger';
 import { CustomerFilterAndSortCriteria } from '../customer.constants';
 import { SortOrder } from '../../shared/shared.constants';
 
 export class CustomerFilterDto {
-  @ApiProperty()
+  @ApiPropertyOptional({ name: 'filterCriteria', enum: CustomerFilterAndSortCriteria })
   @IsOptional()
   @IsNotEmpty()
   @IsIn([
@@ -19,14 +19,14 @@ export class CustomerFilterDto {
   ])
   filterCriteria: CustomerFilterAndSortCriteria;
 
-  @ApiProperty()
+  @ApiPropertyOptional()
   @IsOptional()
   @IsString()
   @MaxLength(50)
   @MinLength(2)
   filter: string;
 
-  @ApiProperty()
+  @ApiPropertyOptional({ name: 'sortCriteria', enum: CustomerFilterAndSortCriteria,  })
   @IsOptional()
   @IsNotEmpty()
   @IsIn([
@@ -40,7 +40,7 @@ export class CustomerFilterDto {
   ])
   sortCriteria: CustomerFilterAndSortCriteria;
 
-  @ApiProperty()
+  @ApiPropertyOptional({ name: 'sortOrder', enum: SortOrder })
   @IsOptional()
   @IsNotEmpty()
   @IsIn([SortOrder.ASC, SortOrder.DESC])

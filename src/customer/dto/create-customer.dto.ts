@@ -1,6 +1,6 @@
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsDefined, IsEmail, IsIn, IsNotEmpty, IsOptional, IsString, MaxLength, MinLength } from 'class-validator';
 
-import { ApiProperty } from '@nestjs/swagger';
 import { CustomerStatus } from '../customer.constants';
 
 export class CreateCustomerDto {
@@ -26,7 +26,7 @@ export class CreateCustomerDto {
   })
   lastName: string;
 
-  @ApiProperty({ name: 'status', enum: CustomerStatus })
+  @ApiPropertyOptional({ name: 'status', enum: CustomerStatus })
   @IsOptional()
   @IsNotEmpty()
   @IsIn([CustomerStatus.CURRENT, CustomerStatus.NON_ACTIVE, CustomerStatus.PROSPECTIVE])
