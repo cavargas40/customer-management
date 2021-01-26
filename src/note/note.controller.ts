@@ -1,9 +1,11 @@
 import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { CreateNoteDto } from './dto/create-note.dto';
 import { UpdateNoteDto } from './dto/update-note.dto';
 import { Note } from './note.entity';
 import { NoteService } from './note.service';
 
+@ApiTags('Note')
 @Controller('notes')
 export class NoteController {
   constructor(private noteService: NoteService) {}
